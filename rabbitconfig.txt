@@ -1,0 +1,5 @@
+rabbitHost = 10.147.17.12 
+rabbitUser = rey
+rabbitPass = rey
+vhost  = projectVhost
+

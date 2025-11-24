@@ -17,8 +17,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['status' => 'error', 'message' => 'No session provided.']);
             exit;
         }
-        try {
-            $connection = new AMQPStreamConnection('10.147.17.197', 5672, 'rey', 'rey', 'projectVhost');
+	try {
+	    $config = parse_ini_file('/var/www/sample/rabbitconfig.txt');
+   	    $rabbitHost = $config['rabbitHost'];
+   	    $rabbitUser = $config['rabbitUser'];
+            $rabbitPass = $config['rabbitPass'];
+  	    $vhost  = $config['vhost'];
+
+            $connection = new AMQPStreamConnection($rabbitHost, 5672, $rabbitUser, $rabbitPass, $vhost);
+
             $channel    = $connection->channel();
             $channel->queue_declare('auth_request', false, true, false, false);
             $channel->queue_declare('auth_response', false, true, false, false);
@@ -73,7 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($action === 'get_portfolio_summary') {
         try {
-            $conn = new AMQPStreamConnection('10.147.17.197', 5672, 'rey', 'rey', 'projectVhost');
+            $config = parse_ini_file('/var/www/sample/rabbitconfig.txt');
+            $rabbitHost = $config['rabbitHost'];
+            $rabbitUser = $config['rabbitUser'];
+            $rabbitPass = $config['rabbitPass'];
+            $vhost  = $config['vhost'];
+
+            $conn = new AMQPStreamConnection($rabbitHost, 5672, $rabbitUser, $rabbitPass, $vhost);
+
             $ch   = $conn->channel();
             $ch->queue_declare('portfolio_request', false, true, false, false);
             $ch->queue_declare('portfolio_response', false, true, false, false);
@@ -125,8 +139,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['status' => 'error', 'message' => 'Invalid session or amount.']);
             exit;
         }
-        try {
-            $conn = new AMQPStreamConnection('10.147.17.197', 5672, 'rey', 'rey', 'projectVhost');
+	try {
+	    $config = parse_ini_file('/var/www/sample/rabbitconfig.txt');
+            $rabbitHost = $config['rabbitHost'];
+            $rabbitUser = $config['rabbitUser'];
+            $rabbitPass = $config['rabbitPass'];
+            $vhost  = $config['vhost'];
+
+	    $conn = new AMQPStreamConnection($rabbitHost, 5672, $rabbitUser, $rabbitPass, $vhost);
             $ch   = $conn->channel();
             $ch->queue_declare('portfolio_request', false, true, false, false);
             $ch->queue_declare('portfolio_response', false, true, false, false);
@@ -177,7 +197,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         try {
-            $conn = new AMQPStreamConnection('10.147.17.197', 5672, 'rey', 'rey', 'projectVhost');
+            $config = parse_ini_file('/var/www/sample/rabbitconfig.txt');
+            $rabbitHost = $config['rabbitHost'];
+            $rabbitUser = $config['rabbitUser'];
+            $rabbitPass = $config['rabbitPass'];
+            $vhost  = $config['vhost'];
+
+            $conn = new AMQPStreamConnection($rabbitHost, 5672, $rabbitUser, $rabbitPass, $vhost);
+
             $ch   = $conn->channel();
             $ch->queue_declare('request_trade_execution', false, true, false, false);
             $ch->queue_declare('response_trade_execution', false, true, false, false);
@@ -242,7 +269,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         try {
-            $conn = new AMQPStreamConnection('10.147.17.197', 5672, 'rey', 'rey', 'projectVhost');
+            $config = parse_ini_file('/var/www/sample/rabbitconfig.txt');
+            $rabbitHost = $config['rabbitHost'];
+            $rabbitUser = $config['rabbitUser'];
+            $rabbitPass = $config['rabbitPass'];
+            $vhost  = $config['vhost'];
+
+            $conn = new AMQPStreamConnection($rabbitHost, 5672, $rabbitUser, $rabbitPass, $vhost);
+
             $ch   = $conn->channel();
             $ch->queue_declare('request_buy_limit_trade', false, true, false, false);
             $ch->queue_declare('response_buy_limit_trade', false, true, false, false);
@@ -309,7 +343,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         try {
-            $conn = new AMQPStreamConnection('10.147.17.197', 5672, 'rey', 'rey', 'projectVhost');
+            $config = parse_ini_file('/var/www/sample/rabbitconfig.txt');
+            $rabbitHost = $config['rabbitHost'];
+            $rabbitUser = $config['rabbitUser'];
+            $rabbitPass = $config['rabbitPass'];
+            $vhost  = $config['vhost'];
+
+            $conn = new AMQPStreamConnection($rabbitHost, 5672, $rabbitUser, $rabbitPass, $vhost);
+
             $ch   = $conn->channel();
             $ch->queue_declare('stock_requests', false, true, false, false);
             $ch->queue_declare('stock_updates', false, true, false, false);

@@ -1,4 +1,5 @@
 <?php
+//deploy test #2
 require_once __DIR__ . '/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -30,7 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        $conn = new AMQPStreamConnection('10.147.17.197', 5672, 'rey', 'rey', 'projectVhost');
+        $config = parse_ini_file('/var/www/sample/rabbitconfig.txt');
+        $rabbitHost = $config['rabbitHost'];
+        $rabbitUser = $config['rabbitUser'];
+        $rabbitPass = $config['rabbitPass'];
+        $vhost  = $config['vhost'];
+
+        $conn = new AMQPStreamConnection($rabbitHost, 5672, $rabbitUser, $rabbitPass, $vhost);
         $ch   = $conn->channel();
 
         $requestQueue  = 'portfolio_request';

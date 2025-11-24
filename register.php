@@ -4,7 +4,13 @@ require_once __DIR__ . '/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-$connection = new AMQPStreamConnection('10.147.17.197', 5672, 'rey', 'rey', 'projectVhost');
+$config = parse_ini_file('/var/www/sample/rabbitconfig.txt');
+$rabbitHost = $config['rabbitHost'];
+$rabbitUser = $config['rabbitUser'];
+$rabbitPass = $config['rabbitPass'];
+$vhost  = $config['vhost'];
+
+$connection = new AMQPStreamConnection($rabbitHost, 5672, $rabbitUser, $rabbitPass, $vhost);
 $channel = $connection->channel();
 
 $channel->queue_declare('auth_request', false, true, false, false);
