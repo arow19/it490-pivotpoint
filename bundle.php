@@ -26,6 +26,11 @@ $remoteUser = 'deploy';
 $remoteDir  = '/home/deploy/archive';
 $remotePath = "{$remoteDir}/{$bundle}_v{$version}.zip";
 
+$deployPass   = $config['deployPass'] ?? '';
+if ($deployPass === '') {
+    echo "no deployPass\n";
+    exit(1);
+}
 
 function run_or_fail(string $cmd): void {
     echo "[CMD] $cmd\n";
@@ -64,7 +69,8 @@ if (!file_exists($localArchive) || filesize($localArchive) === 0) {
 
 
 run_or_fail(sprintf(
-    "ssh -o StrictHostKeyChecking=no %s@%s %s",
+    "sshpass -p %s ssh -o StrictHostKeyChecking=no %s@%s %s",
+    escapeshellarg($deployPass),
     escapeshellarg($remoteUser),
     escapeshellarg($remoteHost),
     escapeshellarg('mkdir -p ' . $remoteDir)
@@ -72,7 +78,8 @@ run_or_fail(sprintf(
 
 
 run_or_fail(sprintf(
-    "scp -o StrictHostKeyChecking=no %s %s@%s:%s",
+    "sshpass -p %s scp -o StrictHostKeyChecking=no %s %s@%s:%s",
+    escapeshellarg($deployPass),
     escapeshellarg($localArchive),
     escapeshellarg($remoteUser),
     escapeshellarg($remoteHost),
