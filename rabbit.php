@@ -7,7 +7,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 
 
-$rabbitHost = "10.147.17.197"; 
+$rabbitHost = "localhost"; 
 $rabbitUser = "latch";        
 $rabbitPass = "latch";    
 $rabbitVhost = "projectVhost";        

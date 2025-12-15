@@ -5,7 +5,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-$rabbitHost = '10.147.17.197';
+$rabbitHost = 'localhost';
 $rabbitUser = 'latch';
 $rabbitPass = 'latch';
 $vhost      = 'projectVhost';
