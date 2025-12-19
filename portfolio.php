@@ -123,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
   <title>Portfolio - Pivot Point</title>
+  <meta name="viewport" content="width=device-width, initial=scale=1.0">
   <style>
     body { font-family: Arial, sans-serif; background: #eef2f7; margin: 0; padding: 0; }
     header { background: #007bff; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }

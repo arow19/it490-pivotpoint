@@ -1,4 +1,5 @@
 <?php
+//deploy test 8
 require_once __DIR__ . '/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -405,6 +406,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
   <title>Pivot Point</title>
+  <meta name="viewport" content="width=device-width, initial=scale=1.0">
   <style>
     body { font-family: Arial, sans-serif; background: #eef2f7; margin: 0; padding: 0; }
     header { background: #007bff; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
@@ -421,7 +423,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
   <header>
-    <h1>Welcome to Pivot Point</h1>
+    <h1>Welcome to Pivot Point v8</h1>
     <div>
       <span class="balance-box">Buying Power: <span id="bpValue">$0.00</span></span>
       <button id="depositBtn">Deposit</button>
